@@ -1,0 +1,1 @@
+import{j as e}from"./index-3e424f74.js";const m=({children:s})=>e.jsx("div",{className:"flex items-center justify-center min-h-screen bg-[#111b21]",children:e.jsx("div",{className:"w-fit max-w-[50vw] p-6 m-auto bg-white rounded-md shadow-md",children:s})});export{m as C};
