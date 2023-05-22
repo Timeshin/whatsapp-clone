@@ -3,7 +3,16 @@
     "target": "ESNext",
     "baseUrl": "src",
     "useDefineForClassFields": true,
-    "paths": {},
+    "paths": {
+      "@/styles/*": ["styles/*"],
+      "@/types/*": ["types/*"],
+      "@/mobx": ["stores/index"],
+      "@/config/*": ["config/*"],
+      "@/services/*": ["services/*"],
+      "@/utils/*": ["utils/*"],
+      "@/components": ["components/index"],
+      "@/layouts": ["layouts/index"]
+    },
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,

@@ -9,7 +9,14 @@ export default ({ mode }) => {
 		base: '',
 		resolve: {
 			alias: {
-				'@/variables': path.resolve(__dirname, './src/styles/_variables.scss')
+				'@/styles': path.resolve(__dirname, './src/styles/'),
+				'@/types': path.resolve(__dirname, './src/types/'),
+				'@/mobx': path.resolve(__dirname, './src/stores/'),
+				'@/config': path.resolve(__dirname, './src/config/'),
+				'@/services': path.resolve(__dirname, './src/services/'),
+				'@/utils': path.resolve(__dirname, './src/utils/'),
+				'@/components': path.resolve(__dirname, './src/components/'),
+				'@/layouts': path.resolve(__dirname, './src/layouts/')
 			}
 		},
 		plugins: [react()],
