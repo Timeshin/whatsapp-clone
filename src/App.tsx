@@ -1,38 +1,44 @@
-import './styles/globals.css'
+import { lazy, Suspense, useCallback } from 'react'
+import { useStores } from '@/mobx'
+import { observer } from 'mobx-react-lite'
+import { Steps } from '@/types/stores/stepsStore.types'
 
-const App = () => (
-	<div className='flex items-center justify-center min-h-screen bg-[#111b21]'>
-		<div className='w-full max-w-sm p-6 m-auto bg-white rounded-md shadow-md'>
-			<h1 className='text-3xl font-semibold text-center text-green-800'>WhatsApp</h1>
+const LoginForm = lazy(() => import('./components/LoginForm/LoginForm'))
+const PhoneForm = lazy(() => import('./components/PhoneForm/PhoneForm'))
+const Chat = lazy(() => import('./components/Chat/Chat'))
+import { Loader } from '@/components'
+import { AuthLayout } from '@/layouts'
 
-			<form className='mt-6'>
-				<div>
-					<label className='block text-sm text-gray-600'>IdInstance</label>
-					<input
-						type='text'
-						className='w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-200'
-					/>
+import '@/styles/globals.css'
+
+const App = () => {
+	const { stepStore } = useStores()
+	const { step } = stepStore
+
+	const currentStepComponent = useCallback(() => {
+		switch (step) {
+			case Steps.LoginStep:
+				return <LoginForm />
+			case Steps.PhoneStep:
+				return <PhoneForm />
+			case Steps.ChatStep:
+				return <Chat />
+			default:
+				return <LoginForm />
+		}
+	}, [step])
+
+	return (
+		<Suspense
+			fallback={
+				<div className='w-screen h-screen flex justify-center items-center'>
+					<Loader size={100} />
 				</div>
+			}
+		>
+			<AuthLayout>{currentStepComponent()}</AuthLayout>
+		</Suspense>
+	)
+}
 
-				<div className='mt-4'>
-					<label className='block text-sm text-gray-600'>ApiTokenInstance</label>
-					<input
-						type='password'
-						className='w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-200'
-					/>
-				</div>
-
-				<div className='mt-6'>
-					<button
-						type='submit'
-						className='w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform rounded-md bg-green-600 hover:bg-green-500 focus:outline-none focus:bg-green-500'
-					>
-						Login
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
-)
-
-export default App
+export default observer(App)
