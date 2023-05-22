@@ -6,8 +6,9 @@
   "scripts": {
     "start:dev": "vite",
     "build": "tsc && vite build",
+    "start:prod": "vite preview",
     "prepare": "husky install",
-    "start:prod": "vite preview"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^1.4.0",
@@ -34,6 +35,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
     "eslint-plugin-unused-imports": "^2.0.0",
+    "gh-pages": "^5.0.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "postcss": "^8.4.23",

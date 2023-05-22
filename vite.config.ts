@@ -6,7 +6,7 @@ export default ({ mode }) => {
 	process.env = { ...process.env, NODE_ENV: mode, ...loadEnv(mode, process.cwd()) }
 
 	return defineConfig({
-		base: '',
+		base: '/whatsapp-clone',
 		resolve: {
 			alias: {
 				'@/styles': path.resolve(__dirname, './src/styles/'),
